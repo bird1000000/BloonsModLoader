@@ -22,11 +22,28 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description")
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sandbox mode", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2})
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node11")
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node12")
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Experimental Pack", New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode5})
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node13")
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node14")
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nightmare Mode", New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8})
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node15")
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node16")
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Chaotic Mode", New System.Windows.Forms.TreeNode() {TreeNode10, TreeNode11})
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TDB: Mods", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode6, TreeNode9, TreeNode12})
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node17")
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node18")
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("100 Cards", New System.Windows.Forms.TreeNode() {TreeNode14, TreeNode15})
+        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("The Camgrow Red", New System.Windows.Forms.TreeNode() {TreeNode16})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Loader = New System.Windows.Forms.TabPage()
+        Me.btn_mergelist = New System.Windows.Forms.Button()
         Me.txt_setmodname = New System.Windows.Forms.TextBox()
-        Me.btn_modname = New System.Windows.Forms.Button()
         Me.btn_removemod = New System.Windows.Forms.Button()
         Me.btn_AddMod = New System.Windows.Forms.Button()
         Me.btn_modlistdown = New System.Windows.Forms.Button()
@@ -53,7 +70,10 @@ Partial Class Main
         Me.Log = New System.Windows.Forms.TabPage()
         Me.lst_log = New System.Windows.Forms.ListBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.btn_mergelist = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.btn_modslstclear = New System.Windows.Forms.Button()
+        Me.DownloadLinks = New System.Windows.Forms.TabPage()
+        Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.TabControl1.SuspendLayout()
         Me.Loader.SuspendLayout()
         Me.Prefabs.SuspendLayout()
@@ -61,6 +81,7 @@ Partial Class Main
         Me.Settings.SuspendLayout()
         Me.Dev.SuspendLayout()
         Me.Log.SuspendLayout()
+        Me.DownloadLinks.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -71,6 +92,7 @@ Partial Class Main
         Me.TabControl1.Controls.Add(Me.Settings)
         Me.TabControl1.Controls.Add(Me.Dev)
         Me.TabControl1.Controls.Add(Me.Log)
+        Me.TabControl1.Controls.Add(Me.DownloadLinks)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -79,9 +101,9 @@ Partial Class Main
         '
         'Loader
         '
+        Me.Loader.Controls.Add(Me.btn_modslstclear)
         Me.Loader.Controls.Add(Me.btn_mergelist)
         Me.Loader.Controls.Add(Me.txt_setmodname)
-        Me.Loader.Controls.Add(Me.btn_modname)
         Me.Loader.Controls.Add(Me.btn_removemod)
         Me.Loader.Controls.Add(Me.btn_AddMod)
         Me.Loader.Controls.Add(Me.btn_modlistdown)
@@ -95,22 +117,22 @@ Partial Class Main
         Me.Loader.Text = "Loader"
         Me.Loader.UseVisualStyleBackColor = True
         '
+        'btn_mergelist
+        '
+        Me.btn_mergelist.Location = New System.Drawing.Point(263, 122)
+        Me.btn_mergelist.Name = "btn_mergelist"
+        Me.btn_mergelist.Size = New System.Drawing.Size(183, 32)
+        Me.btn_mergelist.TabIndex = 9
+        Me.btn_mergelist.Text = "Merge mod list."
+        Me.btn_mergelist.UseVisualStyleBackColor = True
+        '
         'txt_setmodname
         '
         Me.txt_setmodname.Location = New System.Drawing.Point(263, 96)
         Me.txt_setmodname.Name = "txt_setmodname"
         Me.txt_setmodname.Size = New System.Drawing.Size(183, 20)
         Me.txt_setmodname.TabIndex = 8
-        Me.txt_setmodname.Text = "Insert Name Here"
-        '
-        'btn_modname
-        '
-        Me.btn_modname.Location = New System.Drawing.Point(263, 122)
-        Me.btn_modname.Name = "btn_modname"
-        Me.btn_modname.Size = New System.Drawing.Size(183, 32)
-        Me.btn_modname.TabIndex = 5
-        Me.btn_modname.Text = "Change mod name"
-        Me.btn_modname.UseVisualStyleBackColor = True
+        Me.txt_setmodname.Text = "Name for automatically created prefab."
         '
         'btn_removemod
         '
@@ -159,6 +181,7 @@ Partial Class Main
         '
         'Prefabs
         '
+        Me.Prefabs.Controls.Add(Me.ListBox1)
         Me.Prefabs.Controls.Add(Me.TextBox2)
         Me.Prefabs.Controls.Add(Me.Button1)
         Me.Prefabs.Controls.Add(Me.ComboBox3)
@@ -361,14 +384,76 @@ Partial Class Main
         Me.OpenFileDialog1.InitialDirectory = "C:\"
         Me.OpenFileDialog1.Title = "Please select a file"
         '
-        'btn_mergelist
+        'ListBox1
         '
-        Me.btn_mergelist.Location = New System.Drawing.Point(263, 161)
-        Me.btn_mergelist.Name = "btn_mergelist"
-        Me.btn_mergelist.Size = New System.Drawing.Size(183, 32)
-        Me.btn_mergelist.TabIndex = 9
-        Me.btn_mergelist.Text = "Merge mod list."
-        Me.btn_mergelist.UseVisualStyleBackColor = True
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Items.AddRange(New Object() {"                        Mods in Prefab"})
+        Me.ListBox1.Location = New System.Drawing.Point(227, 61)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(222, 329)
+        Me.ListBox1.TabIndex = 3
+        '
+        'btn_modslstclear
+        '
+        Me.btn_modslstclear.Location = New System.Drawing.Point(263, 160)
+        Me.btn_modslstclear.Name = "btn_modslstclear"
+        Me.btn_modslstclear.Size = New System.Drawing.Size(183, 32)
+        Me.btn_modslstclear.TabIndex = 10
+        Me.btn_modslstclear.Text = "Remove all mods."
+        Me.btn_modslstclear.UseVisualStyleBackColor = True
+        '
+        'DownloadLinks
+        '
+        Me.DownloadLinks.Controls.Add(Me.TreeView1)
+        Me.DownloadLinks.Location = New System.Drawing.Point(4, 22)
+        Me.DownloadLinks.Name = "DownloadLinks"
+        Me.DownloadLinks.Size = New System.Drawing.Size(452, 412)
+        Me.DownloadLinks.TabIndex = 6
+        Me.DownloadLinks.Text = "Download"
+        Me.DownloadLinks.UseVisualStyleBackColor = True
+        '
+        'TreeView1
+        '
+        Me.TreeView1.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TreeView1.Location = New System.Drawing.Point(4, 4)
+        Me.TreeView1.Name = "TreeView1"
+        TreeNode1.Name = "Link"
+        TreeNode1.Text = "Link:"
+        TreeNode2.Name = "Description"
+        TreeNode2.Text = "Description"
+        TreeNode3.Name = "Sandbox mode"
+        TreeNode3.Text = "Sandbox mode"
+        TreeNode4.Name = "Node11"
+        TreeNode4.Text = "Node11"
+        TreeNode5.Name = "Node12"
+        TreeNode5.Text = "Node12"
+        TreeNode6.Name = "Experimental Pack"
+        TreeNode6.Text = "Experimental Pack"
+        TreeNode7.Name = "Node13"
+        TreeNode7.Text = "Node13"
+        TreeNode8.Name = "Node14"
+        TreeNode8.Text = "Node14"
+        TreeNode9.Name = "Nightmare Mode"
+        TreeNode9.Text = "Nightmare Mode"
+        TreeNode10.Name = "Node15"
+        TreeNode10.Text = "Node15"
+        TreeNode11.Name = "Node16"
+        TreeNode11.Text = "Node16"
+        TreeNode12.Name = "Chaotic Mode"
+        TreeNode12.Text = "Chaotic Mode"
+        TreeNode13.Name = "Bloons TDB: Mods"
+        TreeNode13.Text = "Bloons TDB: Mods"
+        TreeNode14.Name = "Node17"
+        TreeNode14.Text = "Node17"
+        TreeNode15.Name = "Node18"
+        TreeNode15.Text = "Node18"
+        TreeNode16.Name = "100 Cards"
+        TreeNode16.Text = "100 Cards"
+        TreeNode17.Name = "The Camgrow Red"
+        TreeNode17.Text = "The Camgrow Red"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode13, TreeNode17})
+        Me.TreeView1.Size = New System.Drawing.Size(445, 405)
+        Me.TreeView1.TabIndex = 0
         '
         'Main
         '
@@ -391,6 +476,7 @@ Partial Class Main
         Me.Dev.ResumeLayout(False)
         Me.Dev.PerformLayout()
         Me.Log.ResumeLayout(False)
+        Me.DownloadLinks.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -404,7 +490,6 @@ Partial Class Main
     Friend WithEvents lst_modslist As ListBox
     Friend WithEvents btn_AddMod As Button
     Friend WithEvents btn_removemod As Button
-    Friend WithEvents btn_modname As Button
     Friend WithEvents txt_setmodname As TextBox
     Friend WithEvents Merge As TabPage
     Friend WithEvents Log As TabPage
@@ -426,4 +511,8 @@ Partial Class Main
     Friend WithEvents Button1 As Button
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents btn_mergelist As Button
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents btn_modslstclear As Button
+    Friend WithEvents DownloadLinks As TabPage
+    Friend WithEvents TreeView1 As TreeView
 End Class

@@ -31,10 +31,7 @@ Public Class Main
                 "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\", "{374DE290-123F-4565-9164-39C4925E467B}", Nothing) ' Finds the registry value of the download path
             ofd.InitialDirectory = DownloadsPath 'the ofd opens at the downloads directory
             ofd.Filter = "Jet files (*.jet)|*.jet|Mod files (*.mod)|*.mod" 'forces you to use .jet files
-            If ofd.ShowDialog() = DialogResult.OK Then
-                If  Then
-
-                End If
+            If ofd.ShowDialog() = DialogResult.OK Then 'Checks if the directory is 
                 lst_log.Items.Add("Mod found at the directory " & ofd.FileName)
                 lst_modslist.Items.Add(System.IO.Path.GetFileName(ofd.FileName))
                 x += 1
@@ -54,9 +51,6 @@ Public Class Main
 
     End Sub
 
-    Private Sub btn_modname_Click(sender As Object, e As EventArgs) Handles btn_modname.Click
-
-    End Sub
 
     Private Sub btn_mergelist_Click(sender As Object, e As EventArgs) Handles btn_mergelist.Click
         lst_log.Items.Add("Merging " & x & " .jet/.mod files")
@@ -66,5 +60,14 @@ Public Class Main
             lst_modslist.Items.Clear()
             lst_log.Items.Add("This has not yet been programed.")
         End If
+    End Sub
+
+    Private Sub btn_modslstclear_Click(sender As Object, e As EventArgs) Handles btn_modslstclear.Click
+        lst_modslist.Items.Clear()
+        lst_log.Items.Add("Cleared mod list.")
+    End Sub
+
+    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
+
     End Sub
 End Class
