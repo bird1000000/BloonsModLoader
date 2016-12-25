@@ -23,20 +23,20 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description:")
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sandbox mode", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2})
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node11")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node12")
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description:")
         Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Experimental Pack", New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode5})
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node13")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node14")
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description:")
         Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nightmare Mode", New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8})
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node15")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node16")
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description:")
         Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Chaotic Mode", New System.Windows.Forms.TreeNode() {TreeNode10, TreeNode11})
         Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TDB: Mods", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode6, TreeNode9, TreeNode12})
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node17")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Node18")
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Link:")
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Description")
         Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("100 Cards", New System.Windows.Forms.TreeNode() {TreeNode14, TreeNode15})
         Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("The Camgrow Red", New System.Windows.Forms.TreeNode() {TreeNode16})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
@@ -52,12 +52,7 @@ Partial Class Main
         Me.Prefabs = New System.Windows.Forms.TabPage()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Merge = New System.Windows.Forms.TabPage()
-        Me.btn_findmods = New System.Windows.Forms.Button()
-        Me.btn_mergemods = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.com_Prefablist = New System.Windows.Forms.ComboBox()
         Me.Settings = New System.Windows.Forms.TabPage()
         Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
@@ -77,7 +72,6 @@ Partial Class Main
         Me.TabControl1.SuspendLayout()
         Me.Loader.SuspendLayout()
         Me.Prefabs.SuspendLayout()
-        Me.Merge.SuspendLayout()
         Me.Settings.SuspendLayout()
         Me.Dev.SuspendLayout()
         Me.Log.SuspendLayout()
@@ -88,7 +82,6 @@ Partial Class Main
         '
         Me.TabControl1.Controls.Add(Me.Loader)
         Me.TabControl1.Controls.Add(Me.Prefabs)
-        Me.TabControl1.Controls.Add(Me.Merge)
         Me.TabControl1.Controls.Add(Me.Settings)
         Me.TabControl1.Controls.Add(Me.Dev)
         Me.TabControl1.Controls.Add(Me.Log)
@@ -132,7 +125,7 @@ Partial Class Main
         Me.txt_setmodname.Name = "txt_setmodname"
         Me.txt_setmodname.Size = New System.Drawing.Size(183, 20)
         Me.txt_setmodname.TabIndex = 8
-        Me.txt_setmodname.Text = "Name for automatically created prefab."
+        Me.txt_setmodname.Text = "Insert name for prefab."
         '
         'btn_removemod
         '
@@ -184,7 +177,7 @@ Partial Class Main
         Me.Prefabs.Controls.Add(Me.ListBox1)
         Me.Prefabs.Controls.Add(Me.TextBox2)
         Me.Prefabs.Controls.Add(Me.Button1)
-        Me.Prefabs.Controls.Add(Me.ComboBox3)
+        Me.Prefabs.Controls.Add(Me.com_Prefablist)
         Me.Prefabs.Location = New System.Drawing.Point(4, 22)
         Me.Prefabs.Name = "Prefabs"
         Me.Prefabs.Size = New System.Drawing.Size(452, 412)
@@ -199,7 +192,6 @@ Partial Class Main
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(222, 20)
         Me.TextBox2.TabIndex = 2
-        Me.TextBox2.Text = "Insert Name Here"
         '
         'Button1
         '
@@ -210,63 +202,14 @@ Partial Class Main
         Me.Button1.Text = "Rename"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ComboBox3
+        'com_Prefablist
         '
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(4, 4)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(216, 21)
-        Me.ComboBox3.TabIndex = 0
-        '
-        'Merge
-        '
-        Me.Merge.Controls.Add(Me.btn_findmods)
-        Me.Merge.Controls.Add(Me.btn_mergemods)
-        Me.Merge.Controls.Add(Me.ComboBox2)
-        Me.Merge.Controls.Add(Me.ComboBox1)
-        Me.Merge.Location = New System.Drawing.Point(4, 22)
-        Me.Merge.Name = "Merge"
-        Me.Merge.Size = New System.Drawing.Size(452, 412)
-        Me.Merge.TabIndex = 4
-        Me.Merge.Text = "Merge"
-        Me.Merge.UseVisualStyleBackColor = True
-        '
-        'btn_findmods
-        '
-        Me.btn_findmods.Location = New System.Drawing.Point(4, 166)
-        Me.btn_findmods.Name = "btn_findmods"
-        Me.btn_findmods.Size = New System.Drawing.Size(445, 100)
-        Me.btn_findmods.TabIndex = 3
-        Me.btn_findmods.Text = "Find mods"
-        Me.btn_findmods.UseVisualStyleBackColor = True
-        '
-        'btn_mergemods
-        '
-        Me.btn_mergemods.Location = New System.Drawing.Point(4, 32)
-        Me.btn_mergemods.Name = "btn_mergemods"
-        Me.btn_mergemods.Size = New System.Drawing.Size(445, 100)
-        Me.btn_mergemods.TabIndex = 2
-        Me.btn_mergemods.Text = "Merge"
-        Me.btn_mergemods.UseVisualStyleBackColor = True
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(4, 138)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(445, 21)
-        Me.ComboBox2.TabIndex = 1
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(4, 4)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(445, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.com_Prefablist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.com_Prefablist.FormattingEnabled = True
+        Me.com_Prefablist.Location = New System.Drawing.Point(4, 4)
+        Me.com_Prefablist.Name = "com_Prefablist"
+        Me.com_Prefablist.Size = New System.Drawing.Size(216, 21)
+        Me.com_Prefablist.TabIndex = 0
         '
         'Settings
         '
@@ -420,33 +363,33 @@ Partial Class Main
         TreeNode1.Name = "Link"
         TreeNode1.Text = "Link:"
         TreeNode2.Name = "Description"
-        TreeNode2.Text = "Description"
+        TreeNode2.Text = "Description:"
         TreeNode3.Name = "Sandbox mode"
         TreeNode3.Text = "Sandbox mode"
-        TreeNode4.Name = "Node11"
-        TreeNode4.Text = "Node11"
-        TreeNode5.Name = "Node12"
-        TreeNode5.Text = "Node12"
+        TreeNode4.Name = "Link"
+        TreeNode4.Text = "Link:"
+        TreeNode5.Name = "Description"
+        TreeNode5.Text = "Description:"
         TreeNode6.Name = "Experimental Pack"
         TreeNode6.Text = "Experimental Pack"
-        TreeNode7.Name = "Node13"
-        TreeNode7.Text = "Node13"
-        TreeNode8.Name = "Node14"
-        TreeNode8.Text = "Node14"
+        TreeNode7.Name = "Link"
+        TreeNode7.Text = "Link:"
+        TreeNode8.Name = "Description"
+        TreeNode8.Text = "Description:"
         TreeNode9.Name = "Nightmare Mode"
         TreeNode9.Text = "Nightmare Mode"
-        TreeNode10.Name = "Node15"
-        TreeNode10.Text = "Node15"
-        TreeNode11.Name = "Node16"
-        TreeNode11.Text = "Node16"
+        TreeNode10.Name = "Link"
+        TreeNode10.Text = "Link:"
+        TreeNode11.Name = "Description"
+        TreeNode11.Text = "Description:"
         TreeNode12.Name = "Chaotic Mode"
         TreeNode12.Text = "Chaotic Mode"
         TreeNode13.Name = "Bloons TDB: Mods"
         TreeNode13.Text = "Bloons TDB: Mods"
-        TreeNode14.Name = "Node17"
-        TreeNode14.Text = "Node17"
-        TreeNode15.Name = "Node18"
-        TreeNode15.Text = "Node18"
+        TreeNode14.Name = "Link"
+        TreeNode14.Text = "Link:"
+        TreeNode15.Name = "Description"
+        TreeNode15.Text = "Description"
         TreeNode16.Name = "100 Cards"
         TreeNode16.Text = "100 Cards"
         TreeNode17.Name = "The Camgrow Red"
@@ -470,7 +413,6 @@ Partial Class Main
         Me.Loader.PerformLayout()
         Me.Prefabs.ResumeLayout(False)
         Me.Prefabs.PerformLayout()
-        Me.Merge.ResumeLayout(False)
         Me.Settings.ResumeLayout(False)
         Me.Settings.PerformLayout()
         Me.Dev.ResumeLayout(False)
@@ -491,13 +433,8 @@ Partial Class Main
     Friend WithEvents btn_AddMod As Button
     Friend WithEvents btn_removemod As Button
     Friend WithEvents txt_setmodname As TextBox
-    Friend WithEvents Merge As TabPage
     Friend WithEvents Log As TabPage
     Friend WithEvents lst_log As ListBox
-    Friend WithEvents btn_findmods As Button
-    Friend WithEvents btn_mergemods As Button
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents btn_setpass As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
@@ -509,7 +446,7 @@ Partial Class Main
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents com_Prefablist As ComboBox
     Friend WithEvents btn_mergelist As Button
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents btn_modslstclear As Button

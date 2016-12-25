@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="id%27s.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
