@@ -1,4 +1,4 @@
-﻿Imports System.IO
+﻿
 
 Public Class Main
     Dim x As Integer
@@ -25,22 +25,46 @@ Public Class Main
     End Sub
 
     Private Sub btn_AddMod_Click(sender As Object, e As EventArgs) Handles btn_AddMod.Click
-        ofdstart()
+
+        Using ofd As New OpenFileDialog 'Shortens OpenfileDialog to ofd
+            Dim DownloadsPath = My.Computer.Registry.GetValue( 'Find the path to the downloads folder
+                "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\", "{374DE290-123F-4565-9164-39C4925E467B}", Nothing) ' Finds the registry value of the download path
+            ofd.InitialDirectory = DownloadsPath 'the ofd opens at the downloads directory
+            ofd.Filter = "Jet files (*.jet)|*.jet|Mod files (*.mod)|*.mod" 'forces you to use .jet files
+            If ofd.ShowDialog() = DialogResult.OK Then
+                If  Then
+
+                End If
+                lst_log.Items.Add("Mod found at the directory " & ofd.FileName)
+                lst_modslist.Items.Add(System.IO.Path.GetFileName(ofd.FileName))
+                x += 1
+            End If
+        End Using
+
     End Sub
 
-    Public Sub ofdstart()
-        Dim OpeningDIR = My.Computer.Registry.GetValue(
-        "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", Nothing)
-        OpenFileDialog1.InitialDirectory = OpeningDIR
-        OpenFileDialog1.Filter = "Jet files (*.jet)|*.jet| Mod files (*.mod)|*.mod"
-        If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            lst_modslist.Items.Add(System.IO.Path.GetFileName(OpenFileDialog1.FileName))
-        Else
-            MsgBox("Error, Please select valid data.")
-        End If
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
     End Sub
 
     Private Sub btn_removemod_Click(sender As Object, e As EventArgs) Handles btn_removemod.Click
         lst_modslist.Items.Remove(lst_modslist.SelectedIndex)
+        lst_log.Items.Add("Removing " & lst_modslist.SelectedItem & " from mod list")
+        x -= 1
+
+
+    End Sub
+
+    Private Sub btn_modname_Click(sender As Object, e As EventArgs) Handles btn_modname.Click
+
+    End Sub
+
+    Private Sub btn_mergelist_Click(sender As Object, e As EventArgs) Handles btn_mergelist.Click
+        lst_log.Items.Add("Merging " & x & " .jet/.mod files")
+        If x < 2 Then
+            MsgBox("Pleas enter atleast 2 items to be merged")
+        Else
+            lst_modslist.Items.Clear()
+            lst_log.Items.Add("This has not yet been programed.")
+        End If
     End Sub
 End Class
