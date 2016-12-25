@@ -24,30 +24,30 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Loader = New System.Windows.Forms.TabPage()
+        Me.txt_setmodname = New System.Windows.Forms.TextBox()
+        Me.btn_modname = New System.Windows.Forms.Button()
+        Me.btn_removemod = New System.Windows.Forms.Button()
         Me.btn_AddMod = New System.Windows.Forms.Button()
         Me.btn_modlistdown = New System.Windows.Forms.Button()
         Me.btn_modlistup = New System.Windows.Forms.Button()
         Me.lst_modslist = New System.Windows.Forms.ListBox()
+        Me.Merge = New System.Windows.Forms.TabPage()
+        Me.btn_findmods = New System.Windows.Forms.Button()
+        Me.btn_mergemods = New System.Windows.Forms.Button()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Settings = New System.Windows.Forms.TabPage()
         Me.Dev = New System.Windows.Forms.TabPage()
-        Me.btn_removemod = New System.Windows.Forms.Button()
-        Me.btn_modname = New System.Windows.Forms.Button()
-        Me.Log = New System.Windows.Forms.TabPage()
-        Me.Merge = New System.Windows.Forms.TabPage()
-        Me.txt_setmodname = New System.Windows.Forms.TextBox()
-        Me.lst_log = New System.Windows.Forms.ListBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.btn_mergemods = New System.Windows.Forms.Button()
-        Me.btn_findmods = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.btn_setpass = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Log = New System.Windows.Forms.TabPage()
+        Me.lst_log = New System.Windows.Forms.ListBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.Loader.SuspendLayout()
+        Me.Merge.SuspendLayout()
         Me.Dev.SuspendLayout()
         Me.Log.SuspendLayout()
-        Me.Merge.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -79,6 +79,32 @@ Partial Class Main
         Me.Loader.TabIndex = 0
         Me.Loader.Text = "Loader"
         Me.Loader.UseVisualStyleBackColor = True
+        '
+        'txt_setmodname
+        '
+        Me.txt_setmodname.Location = New System.Drawing.Point(263, 96)
+        Me.txt_setmodname.Name = "txt_setmodname"
+        Me.txt_setmodname.Size = New System.Drawing.Size(183, 20)
+        Me.txt_setmodname.TabIndex = 8
+        Me.txt_setmodname.Text = "Insert Name Here"
+        '
+        'btn_modname
+        '
+        Me.btn_modname.Location = New System.Drawing.Point(263, 122)
+        Me.btn_modname.Name = "btn_modname"
+        Me.btn_modname.Size = New System.Drawing.Size(183, 32)
+        Me.btn_modname.TabIndex = 5
+        Me.btn_modname.Text = "Change mod name"
+        Me.btn_modname.UseVisualStyleBackColor = True
+        '
+        'btn_removemod
+        '
+        Me.btn_removemod.Location = New System.Drawing.Point(263, 58)
+        Me.btn_removemod.Name = "btn_removemod"
+        Me.btn_removemod.Size = New System.Drawing.Size(183, 32)
+        Me.btn_removemod.TabIndex = 4
+        Me.btn_removemod.Text = "Remove Mod"
+        Me.btn_removemod.UseVisualStyleBackColor = True
         '
         'btn_AddMod
         '
@@ -116,6 +142,55 @@ Partial Class Main
         Me.lst_modslist.Size = New System.Drawing.Size(250, 394)
         Me.lst_modslist.TabIndex = 0
         '
+        'Merge
+        '
+        Me.Merge.Controls.Add(Me.btn_findmods)
+        Me.Merge.Controls.Add(Me.btn_mergemods)
+        Me.Merge.Controls.Add(Me.ComboBox2)
+        Me.Merge.Controls.Add(Me.ComboBox1)
+        Me.Merge.Location = New System.Drawing.Point(4, 22)
+        Me.Merge.Name = "Merge"
+        Me.Merge.Size = New System.Drawing.Size(452, 412)
+        Me.Merge.TabIndex = 4
+        Me.Merge.Text = "Merge"
+        Me.Merge.UseVisualStyleBackColor = True
+        '
+        'btn_findmods
+        '
+        Me.btn_findmods.Location = New System.Drawing.Point(4, 166)
+        Me.btn_findmods.Name = "btn_findmods"
+        Me.btn_findmods.Size = New System.Drawing.Size(445, 100)
+        Me.btn_findmods.TabIndex = 3
+        Me.btn_findmods.Text = "Find mods"
+        Me.btn_findmods.UseVisualStyleBackColor = True
+        '
+        'btn_mergemods
+        '
+        Me.btn_mergemods.Location = New System.Drawing.Point(4, 32)
+        Me.btn_mergemods.Name = "btn_mergemods"
+        Me.btn_mergemods.Size = New System.Drawing.Size(445, 100)
+        Me.btn_mergemods.TabIndex = 2
+        Me.btn_mergemods.Text = "Merge"
+        Me.btn_mergemods.UseVisualStyleBackColor = True
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(4, 138)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(445, 21)
+        Me.ComboBox2.TabIndex = 1
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(4, 4)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(445, 21)
+        Me.ComboBox1.TabIndex = 0
+        '
         'Settings
         '
         Me.Settings.Location = New System.Drawing.Point(4, 22)
@@ -137,23 +212,21 @@ Partial Class Main
         Me.Dev.Text = "Dev"
         Me.Dev.UseVisualStyleBackColor = True
         '
-        'btn_removemod
+        'btn_setpass
         '
-        Me.btn_removemod.Location = New System.Drawing.Point(263, 58)
-        Me.btn_removemod.Name = "btn_removemod"
-        Me.btn_removemod.Size = New System.Drawing.Size(183, 32)
-        Me.btn_removemod.TabIndex = 4
-        Me.btn_removemod.Text = "Remove Mod"
-        Me.btn_removemod.UseVisualStyleBackColor = True
+        Me.btn_setpass.Location = New System.Drawing.Point(4, 31)
+        Me.btn_setpass.Name = "btn_setpass"
+        Me.btn_setpass.Size = New System.Drawing.Size(445, 100)
+        Me.btn_setpass.TabIndex = 1
+        Me.btn_setpass.Text = "Set Password"
+        Me.btn_setpass.UseVisualStyleBackColor = True
         '
-        'btn_modname
+        'TextBox1
         '
-        Me.btn_modname.Location = New System.Drawing.Point(263, 122)
-        Me.btn_modname.Name = "btn_modname"
-        Me.btn_modname.Size = New System.Drawing.Size(183, 32)
-        Me.btn_modname.TabIndex = 5
-        Me.btn_modname.Text = "Change mod name"
-        Me.btn_modname.UseVisualStyleBackColor = True
+        Me.TextBox1.Location = New System.Drawing.Point(4, 4)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(445, 20)
+        Me.TextBox1.TabIndex = 0
         '
         'Log
         '
@@ -165,27 +238,6 @@ Partial Class Main
         Me.Log.Text = "Log"
         Me.Log.UseVisualStyleBackColor = True
         '
-        'Merge
-        '
-        Me.Merge.Controls.Add(Me.btn_findmods)
-        Me.Merge.Controls.Add(Me.btn_mergemods)
-        Me.Merge.Controls.Add(Me.ComboBox2)
-        Me.Merge.Controls.Add(Me.ComboBox1)
-        Me.Merge.Location = New System.Drawing.Point(4, 22)
-        Me.Merge.Name = "Merge"
-        Me.Merge.Size = New System.Drawing.Size(452, 412)
-        Me.Merge.TabIndex = 4
-        Me.Merge.Text = "Merge"
-        Me.Merge.UseVisualStyleBackColor = True
-        '
-        'txt_setmodname
-        '
-        Me.txt_setmodname.Location = New System.Drawing.Point(263, 96)
-        Me.txt_setmodname.Name = "txt_setmodname"
-        Me.txt_setmodname.Size = New System.Drawing.Size(183, 20)
-        Me.txt_setmodname.TabIndex = 8
-        Me.txt_setmodname.Text = "Insert Name Here"
-        '
         'lst_log
         '
         Me.lst_log.FormattingEnabled = True
@@ -193,58 +245,6 @@ Partial Class Main
         Me.lst_log.Name = "lst_log"
         Me.lst_log.Size = New System.Drawing.Size(445, 407)
         Me.lst_log.TabIndex = 0
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(4, 4)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(445, 21)
-        Me.ComboBox1.TabIndex = 0
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(4, 138)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(445, 21)
-        Me.ComboBox2.TabIndex = 1
-        '
-        'btn_mergemods
-        '
-        Me.btn_mergemods.Location = New System.Drawing.Point(4, 32)
-        Me.btn_mergemods.Name = "btn_mergemods"
-        Me.btn_mergemods.Size = New System.Drawing.Size(445, 100)
-        Me.btn_mergemods.TabIndex = 2
-        Me.btn_mergemods.Text = "Merge"
-        Me.btn_mergemods.UseVisualStyleBackColor = True
-        '
-        'btn_findmods
-        '
-        Me.btn_findmods.Location = New System.Drawing.Point(4, 166)
-        Me.btn_findmods.Name = "btn_findmods"
-        Me.btn_findmods.Size = New System.Drawing.Size(445, 100)
-        Me.btn_findmods.TabIndex = 3
-        Me.btn_findmods.Text = "Find mods"
-        Me.btn_findmods.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(4, 4)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(445, 20)
-        Me.TextBox1.TabIndex = 0
-        '
-        'btn_setpass
-        '
-        Me.btn_setpass.Location = New System.Drawing.Point(4, 31)
-        Me.btn_setpass.Name = "btn_setpass"
-        Me.btn_setpass.Size = New System.Drawing.Size(445, 100)
-        Me.btn_setpass.TabIndex = 1
-        Me.btn_setpass.Text = "Set Password"
-        Me.btn_setpass.UseVisualStyleBackColor = True
         '
         'OpenFileDialog1
         '
@@ -264,10 +264,10 @@ Partial Class Main
         Me.TabControl1.ResumeLayout(False)
         Me.Loader.ResumeLayout(False)
         Me.Loader.PerformLayout()
+        Me.Merge.ResumeLayout(False)
         Me.Dev.ResumeLayout(False)
         Me.Dev.PerformLayout()
         Me.Log.ResumeLayout(False)
-        Me.Merge.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

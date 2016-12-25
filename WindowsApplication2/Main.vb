@@ -1,6 +1,7 @@
 ﻿Imports System.IO
-Public Class Main
 
+Public Class Main
+    Dim x As Integer
     Private Sub btn_modlistup_Click(sender As Object, e As EventArgs) Handles btn_modlistup.Click 'Moves up the selected item
 
         If lst_modslist.SelectedIndex > 0 Then 'Make sure our item is not the first one on the list.
@@ -24,10 +25,22 @@ Public Class Main
     End Sub
 
     Private Sub btn_AddMod_Click(sender As Object, e As EventArgs) Handles btn_AddMod.Click
-        Dim UserprofilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
-        Dim Downloadspath As String = UserprofilePath.Insert(0, "Test")
-        ' OpenFileDialog1.InitialDirectory = Downloadspath
-        txt_setmodname.Text = UserprofilePath
-        'OpenFileDialog1.ShowDialog()
+        ofdstart()
+    End Sub
+
+    Public Sub ofdstart()
+        Dim OpeningDIR = My.Computer.Registry.GetValue(
+        "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", Nothing)
+        OpenFileDialog1.InitialDirectory = OpeningDIR
+        OpenFileDialog1.Filter = "Jet files (*.jet)|*.jet| Mod files (*.mod)|*.mod"
+        If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            lst_modslist.Items.Add(System.IO.Path.GetFileName(OpenFileDialog1.FileName))
+        Else
+            MsgBox("Error, Please select valid data.")
+        End If
+    End Sub
+
+    Private Sub btn_removemod_Click(sender As Object, e As EventArgs) Handles btn_removemod.Click
+        lst_modslist.Items.Remove(lst_modslist.SelectedIndex)
     End Sub
 End Class
