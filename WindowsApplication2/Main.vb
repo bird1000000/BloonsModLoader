@@ -1,0 +1,190 @@
+﻿Imports System
+Imports Newtonsoft.Json
+Imports Ionic.BZip2
+Imports System.Xml
+Imports System.IO
+Imports System.Security
+Imports System.Security.Cryptography
+Public Class Main
+    'LB_sha256.Text = sha_256(Path)
+    Dim x As Integer
+    Dim y As Integer
+    Dim Storage As String
+    Dim TempFolder As String
+    Dim Data As String
+    Dim BattlesDatajet As String
+    Dim BattlesFolder As String
+    Dim Storeddatajet As String
+    Dim Normaldatajethash As String = "02fae986297f02fcd4a2ddcefc13ed025a31d2c4ccf943055565088531754477"
+    Dim Hasheddatajetvalue As String
+    Dim Password As String = "3FEE2F1F89866061"
+    Private Sub btn_modlistup_Click(sender As Object, e As EventArgs) Handles btn_modlistup.Click 'Moves up the selected item
+
+        If lst_modslist.SelectedIndex > 0 Then 'Make sure our item is not the first one on the list.
+            Dim I = lst_modslist.SelectedIndex - 1 'Gets the position of the data, and moves it up one
+            lst_modslist.Items.Insert(I, lst_modslist.SelectedItem) 'Refreshes the list
+            lst_modslist.Items.RemoveAt(lst_modslist.SelectedIndex) 'Refreshes the list
+            lst_modslist.SelectedIndex = I 'Resets the integer
+        End If
+
+    End Sub
+
+    Private Sub btn_modlistdown_Click(sender As Object, e As EventArgs) Handles btn_modlistdown.Click 'Moves down the selected item
+
+        If lst_modslist.SelectedIndex < lst_modslist.Items.Count - 1 Then 'Make sure our item is not the last one on the list.
+            Dim I = lst_modslist.SelectedIndex + 2 'Gets the position of the data, and moves down one
+            lst_modslist.Items.Insert(I, lst_modslist.SelectedItem) 'Refreshes the list
+            lst_modslist.Items.RemoveAt(lst_modslist.SelectedIndex) 'Refreshes the list
+            lst_modslist.SelectedIndex = I - 1 'Resets the integer
+
+        End If
+    End Sub
+
+    Private Sub btn_AddMod_Click(sender As Object, e As EventArgs) Handles btn_AddMod.Click
+
+        Using ofd As New OpenFileDialog 'Shortens OpenfileDialog to ofd
+            Dim DownloadsPath = My.Computer.Registry.GetValue( 'Find the path to the downloads folder
+                "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\", "{374DE290-123F-4565-9164-39C4925E467B}", Nothing) ' Finds the registry value of the download path
+            ofd.InitialDirectory = DownloadsPath 'the ofd opens at the downloads directory
+            ofd.Filter = "Jet files (*.jet)|*.jet|Mod files (*.mod)|*.mod" 'forces you to use .jet files
+            If ofd.ShowDialog() = DialogResult.OK Then
+                If IO.File.Exists("Data.xml") = False Then
+                    Dim settings As New XmlWriterSettings()
+                    settings.Indent = True
+                    Dim XmlWrt As XmlWriter = XmlWriter.Create("data.xml", settings)
+                    With XmlWrt
+                        .WriteStartDocument()
+                        .WriteComment("This is the xml used for mod loader")
+                        .WriteStartElement("ModLoader")
+                        .WriteStartElement("Moddata")
+
+                        '.WriteStartElement("FirstName")
+                        '.WriteString("Alleo")
+                        '.WriteEndElement()
+
+                        '.WriteStartElement("LastName")
+                        ' .WriteString("Indong")
+                        ' .WriteEndElement()
+
+                        '  .WriteEndElement()
+                        .WriteEndDocument()
+                        .Close()
+
+                    End With
+                Else
+
+                End If
+            End If
+            lst_log.Items.Add("Mod found at the directory " & ofd.FileName)
+            lst_modslist.Items.Add(System.IO.Path.GetFileName(ofd.FileName))
+            x += 1
+        End Using
+
+    End Sub
+
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+    End Sub
+
+    Private Sub btn_removemod_Click(sender As Object, e As EventArgs) Handles btn_removemod.Click
+        lst_modslist.Items.Remove(lst_modslist.SelectedIndex)
+        lst_log.Items.Add("Removing " & lst_modslist.SelectedItem & " from mod list")
+        x -= 1
+
+
+    End Sub
+
+    Private Sub btn_modname_Click(sender As Object, e As EventArgs) Handles btn_modname.Click
+
+    End Sub
+
+    Private Sub btn_mergelist_Click(sender As Object, e As EventArgs) Handles btn_mergelist.Click
+        lst_log.Items.Add("Merging " & x & " .jet/.mod files")
+        If x < 2 Then
+            MsgBox("Pleas enter atleast 2 items to be merged")
+        Else
+            lst_modslist.Items.Clear()
+            lst_log.Items.Add("This has not yet been programed.")
+        End If
+    End Sub
+
+    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim SteamFolder As String 'String only used in this funtion
+        Dim Storeddatajetpath
+        Storage = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BloonsModLoader")
+        Storeddatajetpath = IO.Path.Combine(Storage, "datajet")
+        If My.Computer.FileSystem.DirectoryExists(Storage) = False Then
+            My.Computer.FileSystem.CreateDirectory(Storage)
+            MsgBox("Bloons mod loader has detected that this is your first time openining this program, If this is not true then please PM Me on discord @Ben#3874")
+        ElseIf My.Computer.FileSystem.DirectoryExists(Storeddatajetpath) = False Then
+            My.Computer.FileSystem.CreateDirectory(Storeddatajetpath)
+        End If
+
+        'This block is just definitions for the below if statment
+        SteamFolder = My.Computer.Registry.GetValue(
+    "HKEY_CURRENT_USER\Software\Valve\Steam", "Steampath", Nothing)
+        BattlesFolder = IO.Path.Combine(SteamFolder, "SteamApps\Common\Bloons TD Battles")
+        BattlesDatajet = IO.Path.Combine(BattlesFolder, "Assets\data.jet")
+        Storeddatajet = IO.Path.Combine(Storeddatajetpath, "data.jet")
+
+        'This checks if the directories exist
+        If My.Computer.FileSystem.DirectoryExists(BattlesFolder) = False Then
+            MsgBox("Bloons TD Battles does not seem to be installed, Exiting program")
+            Close()
+        ElseIf My.Computer.FileSystem.FileExists(Storeddatajet) Then
+        ElseIf My.Computer.FileSystem.FileExists(BattlesDatajet) = True Then
+
+
+            MsgBox("Starting Copying")
+            Try
+                System.IO.File.Copy(BattlesDatajet, Storeddatajet)
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+                Close()
+            End Try
+            MsgBox("Copying done!")
+        End If
+    End Sub
+
+    'Anything below this comment is not my code, Credit goes to http://us.informatiweb.net/
+
+    Function sha_256(ByVal file_name As String)
+
+        Return hash_generator("sha256", file_name)
+
+    End Function
+
+    Function hash_generator(ByVal hash_type As String, ByVal file_name As String)
+
+        Dim hash
+        If hash_type.ToLower = "sha256" Then
+            hash = SHA256.Create()
+        End If
+
+        Dim hashValue() As Byte
+
+        Dim fileStream As FileStream = File.OpenRead(file_name)
+        fileStream.Position = 0
+        hashValue = hash.ComputeHash(fileStream)
+        Dim hash_hex = PrintByteArray(hashValue)
+        fileStream.Close()
+
+        Return hash_hex
+
+    End Function
+
+    Public Function PrintByteArray(ByVal array() As Byte)
+
+        Dim hex_value As String = ""
+
+        Dim i As Integer
+        For i = 0 To array.Length - 1
+
+            hex_value += array(i).ToString("X2")
+
+        Next i
+
+        Return hex_value.ToLower
+
+    End Function
+
+End Class
