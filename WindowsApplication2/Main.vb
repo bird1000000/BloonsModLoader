@@ -17,7 +17,10 @@ Public Class Main
     Dim Storeddatajet As String
     Dim Normaldatajethash As String = "02fae986297f02fcd4a2ddcefc13ed025a31d2c4ccf943055565088531754477"
     Dim Hasheddatajetvalue As String
-    Dim Password As String = "3FEE2F1F89866061"
+    Dim Password As String = "Secret"
+    Dim CurrentHash As String
+    Dim StoredDataDir As String
+    Dim Working As New information
     Private Sub btn_modlistup_Click(sender As Object, e As EventArgs) Handles btn_modlistup.Click 'Moves up the selected item
 
         If lst_modslist.SelectedIndex > 0 Then 'Make sure our item is not the first one on the list.
@@ -100,7 +103,7 @@ Public Class Main
     Private Sub btn_mergelist_Click(sender As Object, e As EventArgs) Handles btn_mergelist.Click
         lst_log.Items.Add("Merging " & x & " .jet/.mod files")
         If x < 2 Then
-            MsgBox("Pleas enter atleast 2 items to be merged")
+            MsgBox("Please enter atleast 2 items to be merged")
         Else
             lst_modslist.Items.Clear()
             lst_log.Items.Add("This has not yet been programed.")
@@ -108,40 +111,61 @@ Public Class Main
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim SteamFolder As String 'String only used in this funtion
-        Dim Storeddatajetpath
-        Storage = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BloonsModLoader")
-        Storeddatajetpath = IO.Path.Combine(Storage, "datajet")
-        If My.Computer.FileSystem.DirectoryExists(Storage) = False Then
-            My.Computer.FileSystem.CreateDirectory(Storage)
-            MsgBox("Bloons mod loader has detected that this is your first time openining this program, If this is not true then please PM Me on discord @Ben#3874")
-        ElseIf My.Computer.FileSystem.DirectoryExists(Storeddatajetpath) = False Then
-            My.Computer.FileSystem.CreateDirectory(Storeddatajetpath)
+        Dim SteamFolder As String 'The directory to the steam folder
+        Dim Storeddatajetpath 'The directory to the data.jet in the %appdata%\BloonsModLoader
+
+        Storage = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BloonsModLoader") 'Makes %appdata%\BloonsModLoader
+        Storeddatajetpath = IO.Path.Combine(Storage, "datajet") 'Directory for the data.jet containing folder (Used in copy and pasting)
+        TempFolder = IO.Path.Combine(Storage, "Temp") 'Directory to the temp folder, This is where all the merging will be done
+        StoredDataDir = IO.Path.Combine(Storage, "Stored")
+
+        If My.Computer.FileSystem.DirectoryExists(Storage) = False Then 'Checks if %appdata%\BloonsModLoader exists
+            My.Computer.FileSystem.CreateDirectory(Storage) 'Because it doesns't exist, Create it.
+            MsgBox("Bloons mod loader has detected that this is your first time openining this program, If this is not true or you have any errors then please PM Me on discord @Ben#3874") 'Contact information because the program may be operating incorrectly.
         End If
 
-        'This block is just definitions for the below if statment
-        SteamFolder = My.Computer.Registry.GetValue(
-    "HKEY_CURRENT_USER\Software\Valve\Steam", "Steampath", Nothing)
-        BattlesFolder = IO.Path.Combine(SteamFolder, "SteamApps\Common\Bloons TD Battles")
-        BattlesDatajet = IO.Path.Combine(BattlesFolder, "Assets\data.jet")
-        Storeddatajet = IO.Path.Combine(Storeddatajetpath, "data.jet")
+        If My.Computer.FileSystem.DirectoryExists(Storeddatajetpath) = False Then 'Checks if %appdata%\BloonsModLoader\datajet exists
+            My.Computer.FileSystem.CreateDirectory(Storeddatajetpath) 'If it doesn't exist, Create it.
+        End If
 
-        'This checks if the directories exist
-        If My.Computer.FileSystem.DirectoryExists(BattlesFolder) = False Then
-            MsgBox("Bloons TD Battles does not seem to be installed, Exiting program")
+        If My.Computer.FileSystem.DirectoryExists(TempFolder) = False Then 'Checks if %appdata%\BloonsModLoader\Temp exists (The merging folder)
+            My.Computer.FileSystem.CreateDirectory(TempFolder) 'If it doesnt exist, Create it.
+        End If
+
+        If My.Computer.FileSystem.DirectoryExists(StoredDataDir) = False Then 'Checks if %appdata%\BloonsModLoader\Stored exists (Stores mods and directories for prefabs
+            My.Computer.FileSystem.CreateDirectory(StoredDataDir) 'If it doesn;t exists, Create it.
+        End If
+
+        'The below code checks if there is a data.jet file in %appdata%\BloonsModLoader\datajet\data.jet, If it doesn't exist is copies it from %steamfolder%\Steamapps\Common\Bloons TD Battles\Assets\Data.jet
+        SteamFolder = My.Computer.Registry.GetValue( 'Searches the registry for the steam folder location
+    "HKEY_CURRENT_USER\Software\Valve\Steam", "Steampath", Nothing) 'Folder location is used for finding battles
+
+        BattlesFolder = IO.Path.Combine(SteamFolder, "SteamApps\Common\Bloons TD Battles") 'Creates a variable for the battles folder
+        BattlesDatajet = IO.Path.Combine(BattlesFolder, "Assets\data.jet") 'Creates a variable for the adta.jet
+        Storeddatajet = IO.Path.Combine(Storeddatajetpath, "data.jet") 'Creates the destination for the copy and paste
+
+        If My.Computer.FileSystem.DirectoryExists(BattlesFolder) = False Then 'Checks if the battles folder is installed
+            MsgBox("Bloons TD Battles does not seem to be installed, Exiting program") 'If the folder doesn't exist, Battles isn't installed
             Close()
-        ElseIf My.Computer.FileSystem.FileExists(Storeddatajet) Then
-        ElseIf My.Computer.FileSystem.FileExists(BattlesDatajet) = True Then
-
-
-            MsgBox("Starting Copying")
-            Try
-                System.IO.File.Copy(BattlesDatajet, Storeddatajet)
-            Catch ex As Exception
+        End If
+        If My.Computer.FileSystem.FileExists(Storeddatajet) Then 'If doesn;t exist, copy it from the battles folder
+        ElseIf My.Computer.FileSystem.FileExists(BattlesDatajet) = True Then 'Checks if the data.jet in the steam folder exists
+            CurrentHash = sha_256(BattlesDatajet) 'Hashes the file, Checks if it's the current updates (4.0)
+        Else
+            MsgBox("Error, Data.jet not found") 'Battles is not installed, But the data.jet does not exist
+        End If
+        If CurrentHash = "02fae986297f02fcd4a2ddcefc13ed025a31d2c4ccf943055565088531754477" Then 'Checks if the data.jet is modded
+            MsgBox("Bloons Mod Loader will now copy the data.jet from " & BattlesDatajet & "  To  " & Storeddatajetpath & Environment.NewLine & "This Is a one time installation, You will not need to do this again unless you delete the data.jet in the destination.") 'Tells user that this is a one time installation
+            Try 'Method used for reporting errors in a debugable format to the user
+                System.IO.File.Copy(BattlesDatajet, Storeddatajet) 'Copies the steam data.jet to a location where it will not change
+            Catch ex As Exception 'The below displays the error, If there is one.
                 MsgBox(ex.ToString())
                 Close()
             End Try
-            MsgBox("Copying done!")
+            MsgBox("Copying Has been completed!") 'Tells the user that the program has succesfully copied withotu any errors
+        Else
+            MsgBox("Error, Please make sure that you are using an unmodified data.jet", Environment.NewLine, "Either copy and paste an unmodified data.jet or delete your current data.jet and verify integrity of game cache") 'Tells user to use an unmodified data.jet so that the mod loader can function properly
+            Close()
         End If
     End Sub
 

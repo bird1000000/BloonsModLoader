@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="information.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>

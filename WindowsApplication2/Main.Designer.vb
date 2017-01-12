@@ -22,13 +22,26 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TD Battles: Mods")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("100 Cards")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TD Battles mod loader")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming Soon) Bloons TD 5 Mod loader")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming Soon) Bloons TD Battles Random mod maker")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming soon) Bloons TD 5 Random mission creator")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Software", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4, TreeNode5, TreeNode6})
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Descrription: Miscellaneous tower changes")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Creator: Randumb")
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Download: Currently down")
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Alternate link (1): https://www.dropbox.com/s/l14ayt35cc6gyqc/experimental.jet?dl" &
+        "=0")
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Alternate link (2): https://www.dropbox.com/s/rvamed9zeo7focd/InGame.png?dl=0")
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Experimental pack", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3, TreeNode4, TreeNode5})
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Deflation mode")
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sandbox mode")
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nightmare mode")
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Chaotic mode")
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Dogeball mode")
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TD Battles: Mods", New System.Windows.Forms.TreeNode() {TreeNode6, TreeNode7, TreeNode8, TreeNode9, TreeNode10, TreeNode11})
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("100 cards")
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("100 Cards", New System.Windows.Forms.TreeNode() {TreeNode13})
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bloons TD Battles mod loader")
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming Soon) Bloons TD 5 Mod loader")
+        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming Soon) Bloons TD Battles Random mod maker")
+        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("(Coming soon) Bloons TD 5 Random mission creator")
+        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Software", New System.Windows.Forms.TreeNode() {TreeNode15, TreeNode16, TreeNode17, TreeNode18})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Loader = New System.Windows.Forms.TabPage()
@@ -60,9 +73,9 @@ Partial Class Main
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Log = New System.Windows.Forms.TabPage()
         Me.lst_log = New System.Windows.Forms.ListBox()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Download = New System.Windows.Forms.TabPage()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.Loader.SuspendLayout()
         Me.Prefabs.SuspendLayout()
@@ -285,9 +298,9 @@ Partial Class Main
         Me.CheckBox5.AutoSize = True
         Me.CheckBox5.Location = New System.Drawing.Point(6, 99)
         Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox5.Size = New System.Drawing.Size(82, 17)
         Me.CheckBox5.TabIndex = 4
-        Me.CheckBox5.Text = "CheckBox5"
+        Me.CheckBox5.Text = "Placeholder"
         Me.CheckBox5.UseVisualStyleBackColor = True
         '
         'CheckBox4
@@ -295,9 +308,9 @@ Partial Class Main
         Me.CheckBox4.AutoSize = True
         Me.CheckBox4.Location = New System.Drawing.Point(6, 76)
         Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox4.Size = New System.Drawing.Size(82, 17)
         Me.CheckBox4.TabIndex = 3
-        Me.CheckBox4.Text = "CheckBox4"
+        Me.CheckBox4.Text = "Placeholder"
         Me.CheckBox4.UseVisualStyleBackColor = True
         '
         'CheckBox3
@@ -305,9 +318,9 @@ Partial Class Main
         Me.CheckBox3.AutoSize = True
         Me.CheckBox3.Location = New System.Drawing.Point(6, 53)
         Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox3.Size = New System.Drawing.Size(82, 17)
         Me.CheckBox3.TabIndex = 2
-        Me.CheckBox3.Text = "CheckBox3"
+        Me.CheckBox3.Text = "Placeholder"
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'CheckBox2
@@ -315,9 +328,9 @@ Partial Class Main
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Location = New System.Drawing.Point(6, 30)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox2.Size = New System.Drawing.Size(82, 17)
         Me.CheckBox2.TabIndex = 1
-        Me.CheckBox2.Text = "CheckBox2"
+        Me.CheckBox2.Text = "Placeholder"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -325,9 +338,9 @@ Partial Class Main
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(6, 7)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox1.Size = New System.Drawing.Size(82, 17)
         Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "CheckBox1"
+        Me.CheckBox1.Text = "Placeholder"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Dev
@@ -375,12 +388,6 @@ Partial Class Main
         Me.lst_log.Size = New System.Drawing.Size(445, 407)
         Me.lst_log.TabIndex = 0
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.Filter = """Jet Files (*.jet)|*.jet"""
-        Me.OpenFileDialog1.InitialDirectory = "C:\"
-        Me.OpenFileDialog1.Title = "Please select a file"
-        '
         'Download
         '
         Me.Download.Controls.Add(Me.TreeView1)
@@ -395,24 +402,56 @@ Partial Class Main
         '
         Me.TreeView1.Location = New System.Drawing.Point(4, 4)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode1.Name = "Bloons TD Battles: Mods"
-        TreeNode1.Tag = ""
-        TreeNode1.Text = "Bloons TD Battles: Mods"
-        TreeNode2.Name = "100 Cards"
-        TreeNode2.Text = "100 Cards"
-        TreeNode3.Name = "Bloons TD Battles mod loader"
-        TreeNode3.Text = "Bloons TD Battles mod loader"
-        TreeNode4.Name = "(Coming Soon) Bloons TD 5 Mod loader"
-        TreeNode4.Text = "(Coming Soon) Bloons TD 5 Mod loader"
-        TreeNode5.Name = "(Coming Soon) Bloons TD Battles Random mod maker"
-        TreeNode5.Text = "(Coming Soon) Bloons TD Battles Random mod maker"
-        TreeNode6.Name = "(Coming soon) Bloons TD 5 Random mission creator"
-        TreeNode6.Text = "(Coming soon) Bloons TD 5 Random mission creator"
-        TreeNode7.Name = "Software"
-        TreeNode7.Text = "Software"
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode7})
+        TreeNode1.Name = "Description:"
+        TreeNode1.Text = "Descrription: Miscellaneous tower changes"
+        TreeNode2.Name = "Creator: Randumb"
+        TreeNode2.Text = "Creator: Randumb"
+        TreeNode3.Name = "Download: Currently down"
+        TreeNode3.Text = "Download: Currently down"
+        TreeNode4.Name = "Alternate link (1): https://www.dropbox.com/s/l14ayt35cc6gyqc/experimental.jet?dl" &
+    "=0"
+        TreeNode4.Text = "Alternate link (1): https://www.dropbox.com/s/l14ayt35cc6gyqc/experimental.jet?dl" &
+    "=0"
+        TreeNode5.Name = "Alternate link (2): https://www.dropbox.com/s/rvamed9zeo7focd/InGame.png?dl=0"
+        TreeNode5.Text = "Alternate link (2): https://www.dropbox.com/s/rvamed9zeo7focd/InGame.png?dl=0"
+        TreeNode6.Name = "Experimental pack"
+        TreeNode6.Text = "Experimental pack"
+        TreeNode7.Name = "Deflation mode"
+        TreeNode7.Text = "Deflation mode"
+        TreeNode8.Name = "Sandbox mode"
+        TreeNode8.Text = "Sandbox mode"
+        TreeNode9.Name = "Nightmare mode"
+        TreeNode9.Text = "Nightmare mode"
+        TreeNode10.Name = "Chaotic mode"
+        TreeNode10.Text = "Chaotic mode"
+        TreeNode11.Name = "Dogeball mode"
+        TreeNode11.Text = "Dogeball mode"
+        TreeNode12.Name = "Bloons TD Battles: Mods"
+        TreeNode12.Tag = ""
+        TreeNode12.Text = "Bloons TD Battles: Mods"
+        TreeNode13.Name = "100 cards"
+        TreeNode13.Text = "100 cards"
+        TreeNode14.Name = "100 Cards"
+        TreeNode14.Text = "100 Cards"
+        TreeNode15.Name = "Bloons TD Battles mod loader"
+        TreeNode15.Text = "Bloons TD Battles mod loader"
+        TreeNode16.Name = "(Coming Soon) Bloons TD 5 Mod loader"
+        TreeNode16.Text = "(Coming Soon) Bloons TD 5 Mod loader"
+        TreeNode17.Name = "(Coming Soon) Bloons TD Battles Random mod maker"
+        TreeNode17.Text = "(Coming Soon) Bloons TD Battles Random mod maker"
+        TreeNode18.Name = "(Coming soon) Bloons TD 5 Random mission creator"
+        TreeNode18.Text = "(Coming soon) Bloons TD 5 Random mission creator"
+        TreeNode19.Name = "Software"
+        TreeNode19.Text = "Software"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode12, TreeNode14, TreeNode19})
         Me.TreeView1.Size = New System.Drawing.Size(445, 405)
         Me.TreeView1.TabIndex = 0
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.Filter = """Jet Files (*.jet)|*.jet"""
+        Me.OpenFileDialog1.InitialDirectory = "C:\"
+        Me.OpenFileDialog1.Title = "Please select a file"
         '
         'Main
         '
